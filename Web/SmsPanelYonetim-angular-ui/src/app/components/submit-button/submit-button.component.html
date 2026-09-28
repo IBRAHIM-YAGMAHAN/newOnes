@@ -1,0 +1,8 @@
+<button type="submit" id="kt_sign_in_submit" class="btn btn-hover-rise btn-primary mb-5"
+    [attr.data-kt-indicator]="loader ? 'on' : 'off'" [disabled]="loader||disabled">
+    <i class="fas fa-check"></i>
+    <span class="indicator-label">{{label}}</span>
+    <span class="indicator-progress">{{loading}}
+        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+    </span>
+</button>

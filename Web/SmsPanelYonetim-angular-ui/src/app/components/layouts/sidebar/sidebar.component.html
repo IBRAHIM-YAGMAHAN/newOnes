@@ -1,0 +1,70 @@
+<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
+    data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px"
+    data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+    <div class="app-sidebar-header d-flex flex-stack d-none d-lg-flex pt-8 pb-2" id="kt_app_sidebar_header">
+        <a [routerLink]="['/anasayfa']" class="app-sidebar-logo">
+            <img alt="Logo" src="assets/image/neu-logo-yatay.png"
+                class="h-50px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
+            <img alt="Logo" src="assets/media/logos/demo38-dark.svg" class="h-20px h-lg-25px theme-dark-show" />
+        </a>
+        <div id="kt_app_sidebar_toggle"
+            class="app-sidebar-toggle btn btn-sm btn-icon bg-light btn-color-gray-700 btn-active-color-primary d-none d-lg-flex rotate"
+            data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
+            data-kt-toggle-name="app-sidebar-minimize">
+            <i class="ki-outline ki-text-align-right rotate-180 fs-1"></i>
+        </div>
+    </div>
+    <div class="app-sidebar-navs flex-column-fluid py-6" id="kt_app_sidebar_navs">
+        <div id="kt_app_sidebar_navs_wrappers" class="app-sidebar-wrapper hover-scroll-y my-2" data-kt-scroll="true"
+            data-kt-scroll-activate="true" data-kt-scroll-height="auto"
+            data-kt-scroll-dependencies="#kt_app_sidebar_header" data-kt-scroll-wrappers="#kt_app_sidebar_navs"
+            data-kt-scroll-offset="5px">
+            <div class="app-sidebar-menu-secondary menu menu-rounded menu-column mb-6">
+                <div class="menu-item mb-2">
+                    <div class="menu-heading fs-7 fw-bold text-center text-info">{{this.kullanici.adisoyadi}}</div>
+                    <div class="app-sidebar-separator separator"></div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link active" [routerLink]="['/anasayfa']">
+                        <span class="menu-icon">
+                            <span class="bullet bullet-dot bg-success fs-3"></span>
+                        </span>
+                        <span class="menu-title">Anasayfa</span>
+                    </a>
+                </div>
+                
+            </div>
+
+            <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
+                class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-inden tion menu-state-bullet-primary">
+                <div class="menu-item mb-2">
+                    <div class="menu-heading text-uppercase fs-7 fw-bold">Menü</div>
+                    <div class="app-sidebar-separator separator"></div>
+                </div>
+
+                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="fa-solid fa-gear fs-4 text-primary"></i>
+                        </span>
+                        <span class="menu-title">Menü</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+
+                    <div class="menu-sub menu-sub-accordion" [routerLink]="['meslek-list']" *appYetki="'Meslek.Add'">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                            <a class="menu-link" (click)="menuActive='meslek-list'"
+                                [ngClass]="{'active': menuActive=='meslek-list'}">
+                                <span class="menu-bullet">
+                                    <span class="far fa-circle"></span>
+                                </span>
+                                <span class="menu-title">Menü1</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

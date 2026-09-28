@@ -1,0 +1,76 @@
+/* Sticky durumunda sadece sticky logo görünsün, diğerleri gizlensin */
+.landing-header[data-kt-sticky="on"] .logo-default {
+    display: none !important;
+}
+
+.landing-header[data-kt-sticky="on"] .logo-sticky {
+    display: inline-block !important;
+}
+
+/* Sticky değilken sticky logo gizli olsun */
+.landing-header:not([data-kt-sticky="on"]) .logo-sticky {
+    display: none !important;
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.gallery-item {
+    width: 280px;
+    /* Önceki değerden daha büyük */
+    max-width: 320px;
+}
+
+.gallery-item img {
+     width: 80%; 
+    /* height: 220px; */
+    object-fit: cover;
+}
+
+.lightbox-backdrop,
+.lightbox {
+    z-index: 2000 !important;
+    position: fixed !important;
+}
+
+.carousel-item {
+    padding: 2rem 0;
+    transition: transform 1.5s ease-in-out;
+    /* 1.5 saniye sürede kayar */
+}
+
+/* Carousel oklarını koyulaştır */
+/* Carousel oklarını çerçevesiz ve daha büyük yap */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #222 !important;
+    opacity: 1;
+    box-shadow: none;
+    width: 3rem;
+    height: 3rem;
+    background-size: 70% 70%;
+    background-position: center;
+}
+
+.scroll-list {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Son duyuru için yanıp sönme animasyonu */
+@keyframes yanipSon {
+  0%, 100% { background-color: #fffbe6; }
+  50% { background-color: #c5f0fa; }
+
+}
+
+.son-duyuru-yanip-son {
+  animation: yanipSon 1s infinite;
+  transition: background-color 0.1s;
+  border-radius: 8px; /* İstediğiniz değeri verebilirsiniz */
+}

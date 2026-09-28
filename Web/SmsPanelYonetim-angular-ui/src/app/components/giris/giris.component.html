@@ -1,0 +1,154 @@
+<body id="kt_body" style="min-height: 100vh;">
+
+    <script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if (localStorage.getItem("data-bs-theme") !== null) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+    <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+            <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-5 order-2 order-lg-1">
+                <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+                    <div class="w-lg-500px p-5" [hidden]="step!='giris'">
+                        <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" [formGroup]="girisForm"
+                            (submit)="girisYap()">
+                            <div class="text-center mb-6">
+                                <h1
+                                    class="text-gray-900 fw-bolder mb-3 text-center d-inline-flex align-items-center justify-content-center gap-2">
+                                    <i class="fa-solid fa-right-to-bracket text-primary fs-2"></i>
+                                    <span>Giriş Yap</span>
+                                </h1>
+
+                                <div class="text-gray-500 text-center fs-6" [hidden]="step!='giris'">
+                                    <div class="alert alert-danger text-black">
+                                        <i class="fas fa-exclamation-triangle text-danger me-1 fs-4"></i>
+                                        Sisteme giriş yapmak için T.C. Kimlik Numarası ve tek şifrenizi giriniz. İlk defa
+                                        giriş yapacaksanız veya şifrenizi unuttuysanız, tüm şifre işlemleri için lütfen
+                                        <a href="https://teksifre.erbakan.edu.tr/" target="_blank"
+                                            class="fw-bold text-danger text-decoration-underline">
+                                            teksifre.erbakan.edu.tr
+                                        </a>
+                                        adresini ziyaret ediniz.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="fv-row mb-8">
+                                <input type="text" formControlName="tckimlikno" style="border-color: #8fb9d5;"
+                                    placeholder="E-posta adresiniz" name="tckimlikno" autocomplete="off"
+                                    class="form-control bg-transparent" />
+                            </div>
+
+                            <div class="fv-row mb-3">
+                                <input type="password" style="border-color: #8fb9d5;" formControlName="sifre"
+                                    placeholder="Şifreniz" name="password" autocomplete="off"
+                                    class="form-control bg-transparent" />
+
+                            </div>
+                            <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-4">
+                                <div></div>
+
+                                <a (click)="divOpenFnc('sifremiunuttum')" class="link-primary cursor-pointer fs-5"> <i
+                                        class="fas fa-key me-1 text-danger"></i>Şifremi Unuttum</a>
+                            </div>
+                            <div style="justify-content: center;display: flex;" class="mb-4">
+                                <re-captcha #recaptchaRefLogin siteKey="6LcFD6YpAAAAAGSGbeYUc0HSaJZZp_EBJfMqyX2Q"
+                                    (resolved)="onCaptchaResolved($event)">
+                                </re-captcha>
+                            </div>
+
+                            <div class="d-grid mb-10">
+                                <div class="text-center">
+                                    <button type="submit" id="kt_sign_in_submit"
+                                        class="btn btn-lg btn-primary w-100 mb-1 cursor-pointer"
+                                        [attr.data-kt-indicator]="yukleniyor ? 'on' : 'off'" [disabled]="yukleniyor">
+                                        <i class="fas fa-sign-in-alt me-2 fs-3"></i>
+                                        <span class="indicator-label" translate>Giriş</span>
+                                        <span class="indicator-progress">Lütfen Bekleyin...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                    <button (click)="girisEdevletLink()" [disabled]="yukleniyorEdevlet"
+                                        [attr.data-kt-indicator]="yukleniyorEdevlet ? 'on' : 'off'"
+                                        class="btn btn-flex flex-center btn-danger btn-lg w-100 mb-5">
+                                        <img alt="Logo" src="/assets/image/e-devlet.png" class="h-20px me-3" />
+                                        <span class="indicator-label"> E-Devlet ile Giriş</span>
+                                        <span class="indicator-progress">Giriş Yapılıyor...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                    <div class="form p-2" [hidden]="step!='sifremiunuttum'" novalidate="novalidate"
+                        (submit)="sifremiUnuttum()">
+                        <h3 class="text-dark text-center mb-3" style="vertical-align: middle;" translate>
+                            <i class="fas fa-unlock text-primary fs-3 me-2"></i>Şifre Yenileme
+                        </h3>
+
+                        <div class="text-black-400 text-center  fs-5 mb-4" translate>
+                            <!-- Yeni şifrenizi göndereceğimiz <span style="color:#0095E8">e-posta adresinizi </span>giriniz. -->
+                            Yeni şifreniz e-posta adresinize ve telefonunuza gönderilecektir.
+                        </div>
+
+                        <div class="fv-row mb-4">
+                            <label class="form-label fs-6 fw-bolder text-dark" translate>T.C. Kimlik Numarası</label>
+                            <input class="form-control form-control-lg" type="text" [email]="true"
+                                name="tC_YU_PasaportNo" [(ngModel)]="suTcKimlikNo" autocomplete="off"
+                                style="border-color: #8fb9d5;" />
+                        </div>
+
+                        <div class="fv-row mb-4">
+                            <label class="form-label fs-6 fw-bolder text-dark" translate>Sisteme Kayıtlı Eposta
+                                Adresiniz</label>
+                            <input class="form-control form-control-lg" type="text" [email]="true" name="eposta"
+                                [(ngModel)]="suEposta" autocomplete="off"
+                                oninput="this.value = this.value?.toLocaleLowerCase()" style="border-color: #8fb9d5;" />
+                        </div>
+
+
+                        <div class="d-flex justify-content-center flex-shrink-0">
+                            <button (click)="divOpenFnc('giris')" type="button" id="kt_modal_new_target_cancel"
+                                translate class="btn btn-danger btn-hover-rise me-3"><i class="fas fa-reply"></i> Giriş
+                                Ekranı
+                            </button>
+
+                            <button type="submit" (click)="sifremiUnuttum()" class="btn btn-primary"
+                                [disabled]="dogrulaniyor" [attr.data-kt-indicator]="dogrulaniyor ? 'on' : 'off'">
+                                <span translate class="indicator-label"><i class="fas fa-check me-2"></i>Şifremi
+                                    Yenile</span>
+                                <span class="indicator-progress">Lütfen bekleyiniz...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-lg-500px d-flex flex-stack px-10 mx-auto justify-content-center">
+                    © 2025 - Bilgi İşlem Daire Başkanlığı
+                </div>
+            </div>
+            <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2"
+                style="background-image: url(/assets/media/misc/auth-bg.png)">
+                <div class="d-flex flex-column flex-center py-2 py-lg-5 px-5 px-md-5 w-100 ">
+                    <span class="mb-5">
+                        <img alt="Logo" src="assets/image/neu_logo_net.png" class="h-100px h-lg-150px" />
+                    </span>
+                    <h1 class="d-none d-lg-block text-white fs-1qx fw-bolder text-center mb-7">NEÜ Sms Panel Sistemi’ne
+                        Hoş Geldiniz</h1>
+                    <div class="d-none d-lg-block text-white fs-5" style="text-align: justify;">
+                        Değerli Sms Kullanıcısı,
+                        <br>
+                        <br>
+                        bigilendirme
+                        <br>
+                        <br>
+                        bilgilendirme
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

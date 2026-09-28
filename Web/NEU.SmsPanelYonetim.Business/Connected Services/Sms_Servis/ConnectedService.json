@@ -1,0 +1,18 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://ws.ttmesaj.com/Service1.asmx?WSDL"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "messageContract": true,
+    "namespaceMappings": [
+      "*, Sms_Servis"
+    ],
+    "sync": true,
+    "targetFramework": "netstandard2.0",
+    "typeReuseMode": "None"
+  }
+}

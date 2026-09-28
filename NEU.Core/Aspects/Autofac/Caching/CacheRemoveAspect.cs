@@ -1,0 +1,30 @@
+﻿
+using NEU.Core.CrossCuttingConcerns.Caching;
+using NEU.Core.Utilities.Interceptors;
+using NEU.Core.Utilities.IoC;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Extensions.DependencyInjection;
+using Castle.DynamicProxy;
+
+
+namespace NEU.Core.Aspects.Autofac.Caching
+{
+    public class CacheRemoveAspect : MethodInterception
+    {
+        private string _pattern;
+        private ICacheManager _cacheManager;
+
+        public CacheRemoveAspect(string pattern)
+        {
+            _pattern = pattern;
+            _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
+        }
+
+        protected override void OnSuccess(IInvocation invocation)
+        {
+            _cacheManager.RemoveByPattern(_pattern);
+        }
+    }
+}

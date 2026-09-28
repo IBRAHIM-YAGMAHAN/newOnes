@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace NEU.Core.Utilities.Results
+{
+    public class SuccessDataResult<T> : DataResult<T>
+    {
+        public SuccessDataResult(T data, string message) : base(data, true, message)
+        {
+        }
+
+        public SuccessDataResult(T data, string message,int recordCount) : base(data, true, message, recordCount)
+        {
+        }
+
+        public SuccessDataResult(T data) : base(data, true)
+        {
+        }
+
+        public SuccessDataResult(string message) : base(default, true, message)
+        {
+
+        }
+
+        public SuccessDataResult() : base(default, true)
+        {
+
+        }
+    }
+}

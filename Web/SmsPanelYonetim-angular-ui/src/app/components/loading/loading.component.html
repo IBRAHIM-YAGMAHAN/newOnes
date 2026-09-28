@@ -1,0 +1,14 @@
+@if (loader) {
+<div class="text-center m-20">
+    <span [hidden]="minimize">
+        <img src="/assets/image/Logo TR1.png" style="width:10%;" />
+        <br>
+        <br>
+    </span>
+    <span class="h6 ms-4 text-primary text-center"> <span
+            class="spinner-border spinner-primary spinner-border-lg align-middle text-primary me-2"></span>Yükleniyor...</span>
+</div>
+}
+@else {
+<ng-content></ng-content>
+}

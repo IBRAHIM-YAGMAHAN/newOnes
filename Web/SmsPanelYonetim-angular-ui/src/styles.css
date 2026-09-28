@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'node_modules/ngx-toastr/toastr.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "node_modules/ngx-lightbox/lightbox.css";
+
+.text-primary{
+  color: #1B84FF !important; /* Bootstrap 5 mavi */
+}
+.link-primary{
+  color: #1B84FF !important; /* Bootstrap 5 mavi */
+}
+.text-primary{
+  color: #1B84FF !important; /* Bootstrap 5 mavi */
+}
+.bg-primary {
+  background-color: #1B84FF !important;
+}
+.border-primary {
+  border-color: #1B84FF !important;
+}
+.btn-primary {
+  background-color: #1B84FF !important;
+  border-color: #1B84FF !important;
+  color: #fff !important;
+}
+.badge-success {
+  background-color: #17C653;
+}
+.stepper-icon{
+  background-color: #3E97FF !important;
+}

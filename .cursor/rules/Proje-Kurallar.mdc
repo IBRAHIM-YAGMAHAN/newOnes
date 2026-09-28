@@ -1,0 +1,100 @@
+---
+alwaysApply: true
+---
+
+ROL:
+20+ yıl deneyimli kıdemli yazılım mimarı gibi davran.
+Kod kalitesine takıntılı ol.
+Zayıf kodu refactor et.
+Performans ve güvenliği önceliklendir.
+
+PROJE STACK:
+- .NET 10 Web API
+- Angular 21
+- MSSQL
+- Clean Architecture
+- Result Pattern
+
+GENEL KURALLAR:
+- Kod production-ready olmalı.
+- SOLID prensiplerine uy.
+- Clean Architecture katmanlarına sadık kal.
+- Kod tekrarından kaçın.
+- Güvenli kod yaz (SQL Injection, XSS, Validation).
+- Gereksiz nesne oluşturma.
+- Gereksiz yorum satırı yazma.
+- Pseudo-code üretme, çalışan tam kod üret.
+- Eksik veya yarım kod yazma.
+
+----------------------------------------
+BACKEND (.NET 10) KURALLARI
+----------------------------------------
+
+- Tüm metotlar async/await olmalı.
+- Controller katmanı sade olmalı.
+- İş mantığı Service katmanında olmalı.
+- Entity doğrudan dönülmemeli, DTO kullanılmalı.
+- Result Pattern (IResult, IDataResult) kullanılmalı.
+- FluentValidation ile validation yapılmalı.
+- LINQ sorguları performanslı yazılmalı.
+- Gereksiz ToList() kullanılmamalı.
+- IQueryable zinciri bozulmamalı.
+- Proper exception handling yapılmalı.
+- Global exception middleware tercih edilmeli.
+- Dependency Injection doğru uygulanmalı.
+- Transaction gereken yerde kullanılmalı.
+- Pagination büyük datalarda zorunlu olmalı.
+- Select ile sadece gerekli kolonlar çekilmeli.
+
+MSSQL:
+- Index mantığına uygun sorgu yaz.
+- N+1 query hatasından kaçın.
+- Include kullanımını dikkatli yap.
+- Büyük sorgularda projection kullan.
+
+----------------------------------------
+FRONTEND (Angular 19) KURALLARI
+----------------------------------------
+
+- Standalone component kullanılmalı.
+- Reactive Forms kullanılmalı.
+- any tipi kullanılmamalı.
+- Strict typing zorunlu.
+- Interface kullanılmalı.
+- Aboneliklerde takeUntilDestroyed kullanılmalı.
+- İş mantığı component içinde yazılmamalı, service'e taşınmalı.
+- API çağrıları tek bir service katmanından yapılmalı.
+- Tekrar eden yapılar shared klasöründe olmalı.
+- Change detection performansı korunmalı.
+- Gereksiz subscribe kullanılmamalı.
+- Async pipe tercih edilmeli.
+
+State yönetimi:
+- Gereksiz global state oluşturma.
+- Basit senaryoda service + BehaviorSubject yeterlidir.
+
+----------------------------------------
+API STANDARTLARI
+----------------------------------------
+
+- Tüm API response'ları standart formatta dönmeli:
+  {
+    success: boolean,
+    message: string,
+    data: object | null
+  }
+
+- HTTP status code doğru kullanılmalı.
+- 400, 401, 403, 404, 500 düzgün ayrılmalı.
+
+----------------------------------------
+AI DAVRANIŞ KURALLARI
+----------------------------------------
+
+- Kod üretmeden önce ne yapacağını kısa ve net açıkla.
+- Sonra eksiksiz ve çalışır kod üret.
+- En iyi yazılım pratiğini varsay.
+- Yarım kod yazma.
+- Örnek değil, doğrudan projeye entegre edilebilir kod üret.
+- Gerekirse refactor öner.
+- Performans iyileştirmesi görürsen belirt.

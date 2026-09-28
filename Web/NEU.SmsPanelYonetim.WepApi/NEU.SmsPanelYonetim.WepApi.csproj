@@ -1,0 +1,78 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Konsol (CMD) penceresinin açılmasını engeller -->
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BelgeFile\EtkinlikFile\**" />
+    <Compile Remove="BelgeFile\OzgecmisFile\**" />
+    <Compile Remove="BelgeFile\ProfilFile\**" />
+    <Compile Remove="BelgeFile\TalepFile\**" />
+    <Compile Remove="wwwroot\ckfinder\**" />
+    <Compile Remove="wwwroot\uploads\**" />
+    <Content Remove="BelgeFile\EtkinlikFile\**" />
+    <Content Remove="BelgeFile\OzgecmisFile\**" />
+    <Content Remove="BelgeFile\ProfilFile\**" />
+    <Content Remove="BelgeFile\TalepFile\**" />
+    <Content Remove="wwwroot\ckfinder\**" />
+    <Content Remove="wwwroot\uploads\**" />
+    <EmbeddedResource Remove="BelgeFile\EtkinlikFile\**" />
+    <EmbeddedResource Remove="BelgeFile\OzgecmisFile\**" />
+    <EmbeddedResource Remove="BelgeFile\ProfilFile\**" />
+    <EmbeddedResource Remove="BelgeFile\TalepFile\**" />
+    <EmbeddedResource Remove="wwwroot\ckfinder\**" />
+    <EmbeddedResource Remove="wwwroot\uploads\**" />
+    <None Remove="BelgeFile\EtkinlikFile\**" />
+    <None Remove="BelgeFile\OzgecmisFile\**" />
+    <None Remove="BelgeFile\ProfilFile\**" />
+    <None Remove="BelgeFile\TalepFile\**" />
+    <None Remove="wwwroot\ckfinder\**" />
+    <None Remove="wwwroot\uploads\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
+    <PackageReference Include="MimeTypeMapOfficial" Version="1.0.17" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="System.ServiceModel.Security" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NEU.SmsPanelYonetim.Business\NEU.Misafirhane.Business.csproj" />
+    <ProjectReference Include="..\NEU.SmsPanelYonetim.DataAccess\NEU.Misafirhane.DataAccess.csproj" />
+    <ProjectReference Include="..\NEU.SmsPanelYonetim.Dto\NEU.Misafirhane.Dto.csproj" />
+    <ProjectReference Include="..\NEU.SmsPanelYonetim.Entities\NEU.Misafirhane.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BelgeFile\" />
+    <Folder Include="LogFile\" />
+  </ItemGroup>
+
+</Project>
