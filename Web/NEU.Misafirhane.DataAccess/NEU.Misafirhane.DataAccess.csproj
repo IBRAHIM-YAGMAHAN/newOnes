@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -23,8 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\NEU.Core\NEU.Core.csproj" />
-    <ProjectReference Include="..\NEU.SmsPanelYonetim.Dto\NEU.Misafirhane.Dto.csproj" />
-    <ProjectReference Include="..\NEU.SmsPanelYonetim.Entities\NEU.Misafirhane.Entities.csproj" />
+    <ProjectReference Include="..\NEU.Misafirhane.Dto\NEU.Misafirhane.Dto.csproj" />
+    <ProjectReference Include="..\NEU.Misafirhane.Entities\NEU.Misafirhane.Entities.csproj" />
   </ItemGroup>
 
 </Project>

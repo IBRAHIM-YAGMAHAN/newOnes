@@ -3,16 +3,16 @@ using NEU.Core.Entities.Concrete;
 using NEU.Core.Recaptcha;
 using NEU.Core.Utilities.Results;
 using NEU.Core.Utilities.Security.Jwt;
-using NEU.SmsPanelYonetim.Business.Abstract;
-using NEU.SmsPanelYonetim.Business.Container;
-using NEU.SmsPanelYonetim.Business.Container.Autofac;
-using NEU.SmsPanelYonetim.Dto.Dtos.AuthDtoFolder;
-using NEU.SmsPanelYonetim.Dto.Dtos.GenelDtoFolder;
+using NEU.Misafirhane.Business.Abstract;
+using NEU.Misafirhane.Business.Container;
+using NEU.Misafirhane.Business.Container.Autofac;
+using NEU.Misafirhane.Dto.Dtos.AuthDtoFolder;
+using NEU.Misafirhane.Dto.Dtos.GenelDtoFolder;
 using Newtonsoft.Json;
 using RestSharp;
 using Serilog;
 
-namespace NEU.SmsPanelYonetim.Business.Concrete
+namespace NEU.Misafirhane.Business.Concrete
 {
     public class AuthManager : IAuthService
     {

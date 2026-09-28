@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using NEU.Core.Utilities.Results;
-using NEU.SmsPanelYonetim.Business.Abstract;
-using NEU.SmsPanelYonetim.Dto.Dtos.GenelDtoFolder;
+using NEU.Misafirhane.Business.Abstract;
+using NEU.Misafirhane.Dto.Dtos.GenelDtoFolder;
 using Newtonsoft.Json;
 using RestSharp;
 
-namespace NEU.SmsPanelYonetim.Business.Concrete
+namespace NEU.Misafirhane.Business.Concrete
 {
     public class GenelManager : IGenelService
     {

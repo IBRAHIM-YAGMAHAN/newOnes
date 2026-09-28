@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace NEU.SmsPanelYonetim.Entities.Dtos.GenelDtoFolder
+namespace NEU.Misafirhane.Entities.Dtos.GenelDtoFolder
 {
     public class SmsParametreOtpDto
     {

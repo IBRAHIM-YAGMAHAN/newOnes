@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace NEU.SmsPanelYonetim.Entities.Dtos
+namespace NEU.Misafirhane.Entities.Dtos
 {
     public class ObsBilgiDto
     {

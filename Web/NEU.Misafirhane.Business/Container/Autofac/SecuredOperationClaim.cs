@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NEU.Core.Extensions;
 using NEU.Core.Utilities.IoC;
 
-namespace NEU.SmsPanelYonetim.Business.Container.Autofac
+namespace NEU.Misafirhane.Business.Container.Autofac
 {
     public class SecuredOperationClaim
     {

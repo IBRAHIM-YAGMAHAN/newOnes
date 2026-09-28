@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NEU.SmsPanelYonetim.Business.Container
+namespace NEU.Misafirhane.Business.Container
 {
     public static class Messages
     {

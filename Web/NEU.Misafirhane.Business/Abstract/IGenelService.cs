@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NEU.Core.Utilities.Results;
-using NEU.SmsPanelYonetim.Dto.Dtos.DanismanDtoFolder;
-using NEU.SmsPanelYonetim.Dto.Dtos.GenelDtoFolder;
-using NEU.SmsPanelYonetim.Entities.Dtos;
-using NEU.SmsPanelYonetim.Entities.Dtos.GenelDtoFolder;
-using static NEU.SmsPanelYonetim.Entities.Dtos.ObsBilgiDto;
+using NEU.Misafirhane.Dto.Dtos.DanismanDtoFolder;
+using NEU.Misafirhane.Dto.Dtos.GenelDtoFolder;
+using NEU.Misafirhane.Entities.Dtos;
+using NEU.Misafirhane.Entities.Dtos.GenelDtoFolder;
+using static NEU.Misafirhane.Entities.Dtos.ObsBilgiDto;
 
-namespace NEU.SmsPanelYonetim.Business.Abstract
+namespace NEU.Misafirhane.Business.Abstract
 {
     public interface IGenelService
     {

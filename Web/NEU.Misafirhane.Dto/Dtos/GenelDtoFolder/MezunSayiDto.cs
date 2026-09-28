@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEU.SmsPanelYonetim.Dto.Dtos.GenelDtoFolder
+namespace NEU.Misafirhane.Dto.Dtos.GenelDtoFolder
 {
     public class MezunSayiDto
     {

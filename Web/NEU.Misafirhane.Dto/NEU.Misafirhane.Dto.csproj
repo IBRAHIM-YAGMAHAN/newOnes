@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NEU.SmsPanelYonetim.Entities\NEU.Misafirhane.Entities.csproj" />
+    <ProjectReference Include="..\NEU.Misafirhane.Entities\NEU.Misafirhane.Entities.csproj" />
   </ItemGroup>
 
 </Project>

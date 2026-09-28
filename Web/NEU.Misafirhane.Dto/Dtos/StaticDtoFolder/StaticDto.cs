@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEU.SmsPanelYonetim.Dto.Dtos.UyeDtoFolder
+namespace NEU.Misafirhane.Dto.Dtos.UyeDtoFolder
 {
     public class StaticDto
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NEU.SmsPanelYonetim.Dto.Dtos.AuthDtoFolder
+namespace NEU.Misafirhane.Dto.Dtos.AuthDtoFolder
 {
     public class KullaniciGirisDto : IDto
     {

@@ -46,7 +46,7 @@
               "file-saver",
               "ngx-filesaver"
             ],
-            "outputPath": "../NEU.SmsPanelYonetim.WepApi/wwwroot",
+            "outputPath": "../NEU.Misafirhane.WepApi/wwwroot",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

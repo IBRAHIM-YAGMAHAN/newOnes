@@ -1,12 +1,12 @@
 using NEU.Core.Entities.Concrete;
 using NEU.Core.Utilities.Results;
 using NEU.Core.Utilities.Security.Jwt;
-using NEU.SmsPanelYonetim.Dto.Dtos.AuthDtoFolder;
+using NEU.Misafirhane.Dto.Dtos.AuthDtoFolder;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NEU.SmsPanelYonetim.Business.Abstract
+namespace NEU.Misafirhane.Business.Abstract
 {
     public interface IAuthService
     {

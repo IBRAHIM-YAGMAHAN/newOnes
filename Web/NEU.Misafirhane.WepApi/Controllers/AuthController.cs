@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using NEU.Core.Utilities.Results;
-using NEU.SmsPanelYonetim.Business.Abstract;
-using NEU.SmsPanelYonetim.Business.Container.Autofac;
-using NEU.SmsPanelYonetim.Dto.Dtos.AuthDtoFolder;
+using NEU.Misafirhane.Business.Abstract;
+using NEU.Misafirhane.Business.Container.Autofac;
+using NEU.Misafirhane.Dto.Dtos.AuthDtoFolder;
 using Serilog;
 using System.Linq.Expressions;
-namespace NEU.SmsPanelYonetim.WepApi.Controllers
+namespace NEU.Misafirhane.WepApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

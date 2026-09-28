@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEU.SmsPanelYonetim.Dto.Dtos.DanismanDtoFolder
+namespace NEU.Misafirhane.Dto.Dtos.DanismanDtoFolder
 {
     public class ApiKisilerDto
     {

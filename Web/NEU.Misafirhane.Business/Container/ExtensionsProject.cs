@@ -5,10 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NEU.Core.Recaptcha;
 using NEU.Core.Utilities.Security.Jwt;
-using NEU.SmsPanelYonetim.Business.Abstract;
+using NEU.Misafirhane.Business.Abstract;
 using System.Text;
 
-namespace NEU.SmsPanelYonetim.Business.Concrete
+namespace NEU.Misafirhane.Business.Concrete
 {
     public static class ExtensionsProject
     {

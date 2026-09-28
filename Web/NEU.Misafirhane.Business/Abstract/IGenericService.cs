@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEU.SmsPanelYonetim.Business.Abstract
+namespace NEU.Misafirhane.Business.Abstract
 {
     public interface IGenericService<T>
     {

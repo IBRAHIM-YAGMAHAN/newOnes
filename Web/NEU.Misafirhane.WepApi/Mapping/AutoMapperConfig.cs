@@ -1,5 +1,5 @@
 using AutoMapper;
-namespace NEU.SmsPanelYonetim.WepApi.Mapping
+namespace NEU.Misafirhane.WepApi.Mapping
 {
     public class AutoMapperConfig : Profile
     {
