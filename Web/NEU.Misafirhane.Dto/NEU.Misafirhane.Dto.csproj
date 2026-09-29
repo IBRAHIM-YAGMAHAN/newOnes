@@ -24,4 +24,8 @@
     <ProjectReference Include="..\NEU.Misafirhane.Entities\NEU.Misafirhane.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\StaticDtoFolder\" />
+  </ItemGroup>
+
 </Project>

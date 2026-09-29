@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+ï»¿using System.Runtime.InteropServices;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using NEU.Core.Utilities.Interceptors;
@@ -28,7 +28,8 @@ using Microsoft.Extensions.FileProviders;
 using DataAccess.Concrete;
 
 
-var builder = WebApplication.CreateBuilder(args);
+
+ var builder = WebApplication.CreateBuilder(args);
 
 string logWarningPath = Path.Combine(@Directory.GetCurrentDirectory() + "/LogFile/", "WarningLog.txt");
 string logErrorPath = Path.Combine(@Directory.GetCurrentDirectory() + "/LogFile/", "ErrorLog.txt");
@@ -42,28 +43,32 @@ builder.Host.UseSerilog((context, config) =>
             path: logWarningPath,
             restrictedToMinimumLevel: LogEventLevel.Warning,
             rollingInterval: RollingInterval.Day,
-            retainedFileCountLimit: 30, // Eski loglarý temizleme
+            retainedFileCountLimit: 30, // Eski loglarÃ½ temizleme
             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
      .WriteTo.File(
             path: logErrorPath,
             restrictedToMinimumLevel: LogEventLevel.Error,
             rollingInterval: RollingInterval.Day,
-            retainedFileCountLimit: 30, // Eski loglarý temizleme
+            retainedFileCountLimit: 30, // Eski loglarÃ½ temizleme
             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}");
 });
 // Add services to the container.
-builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.AddControllers().AddNewtonsoftJson(x =>
+{
+    x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+    x.SerializerSettings.Converters.Add(new NEU.Misafirhane.WepApi.Mapping.DateOnlyJsonConverter());
+});
 
 builder.Services.AddDbContext<Context>();
 
 ValidatorOptions.Global.LanguageManager.Culture = new System.Globalization.CultureInfo("tr");
 
 builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
-ExtensionsProject.ContainerDependencies(builder.Services); // Extensions sýnýfýný kullanýn
+builder.Services.AddSwaggerGen();  //yorum satÄ±rÄ± yaparÄ±z sonra
+ExtensionsProject.ContainerDependencies(builder.Services); // Extensions sÃ½nÃ½fÃ½nÃ½ kullanÃ½n
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 builder.Services.AddControllersWithViews();
-// CORS konfigürasyonu
+// CORS konfigÃ¼rasyonu
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -74,7 +79,7 @@ var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOpt
 
 builder.Services.AddJwtAuthentication(tokenOptions.SecurityKey, tokenOptions.Issuer, tokenOptions.Audience);
 ExtensionsProject.CustomValidator(builder.Services);
-// Autofac konfigürasyonu
+// Autofac konfigÃ¼rasyonu
 
 //builder.Services.AddHttpClient<RecaptchaService>();
 
@@ -99,9 +104,9 @@ app.ConfigureCustomExceptionMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-   // app.UseDeveloperExceptionPage();
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
+    // app.UseDeveloperExceptionPage();
+    app.UseSwagger();   //ikiside yorum
+    app.UseSwaggerUI();
 }
 
 app.UseCors("AllowOrigin");
@@ -114,12 +119,14 @@ ServiceTool.SetServiceProvider(app.Services);
 
 app.UseStaticFiles();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "..", "uploads")),
-    RequestPath = "/uploads"
-});
+//resimler ekledimde kulanÄ±rÄ±z.
+
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//        Path.Combine(Directory.GetCurrentDirectory(), "..", "uploads")),
+//    RequestPath = "/uploads"
+//});
 
 
 app.UseRouting();

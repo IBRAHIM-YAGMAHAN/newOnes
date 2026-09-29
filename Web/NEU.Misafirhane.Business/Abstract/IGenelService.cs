@@ -2,11 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NEU.Core.Utilities.Results;
-using NEU.Misafirhane.Dto.Dtos.DanismanDtoFolder;
 using NEU.Misafirhane.Dto.Dtos.GenelDtoFolder;
-using NEU.Misafirhane.Entities.Dtos;
-using NEU.Misafirhane.Entities.Dtos.GenelDtoFolder;
-using static NEU.Misafirhane.Entities.Dtos.ObsBilgiDto;
+
 
 namespace NEU.Misafirhane.Business.Abstract
 {

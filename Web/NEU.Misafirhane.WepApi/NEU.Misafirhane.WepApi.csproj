@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+	<NoWarn>$(NoWarn);NU1903</NoWarn>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -13,26 +14,18 @@
     <Compile Remove="BelgeFile\OzgecmisFile\**" />
     <Compile Remove="BelgeFile\ProfilFile\**" />
     <Compile Remove="BelgeFile\TalepFile\**" />
-    <Compile Remove="wwwroot\ckfinder\**" />
-    <Compile Remove="wwwroot\uploads\**" />
     <Content Remove="BelgeFile\EtkinlikFile\**" />
     <Content Remove="BelgeFile\OzgecmisFile\**" />
     <Content Remove="BelgeFile\ProfilFile\**" />
     <Content Remove="BelgeFile\TalepFile\**" />
-    <Content Remove="wwwroot\ckfinder\**" />
-    <Content Remove="wwwroot\uploads\**" />
     <EmbeddedResource Remove="BelgeFile\EtkinlikFile\**" />
     <EmbeddedResource Remove="BelgeFile\OzgecmisFile\**" />
     <EmbeddedResource Remove="BelgeFile\ProfilFile\**" />
     <EmbeddedResource Remove="BelgeFile\TalepFile\**" />
-    <EmbeddedResource Remove="wwwroot\ckfinder\**" />
-    <EmbeddedResource Remove="wwwroot\uploads\**" />
     <None Remove="BelgeFile\EtkinlikFile\**" />
     <None Remove="BelgeFile\OzgecmisFile\**" />
     <None Remove="BelgeFile\ProfilFile\**" />
     <None Remove="BelgeFile\TalepFile\**" />
-    <None Remove="wwwroot\ckfinder\**" />
-    <None Remove="wwwroot\uploads\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,7 +65,7 @@
 
   <ItemGroup>
     <Folder Include="BelgeFile\" />
-    <Folder Include="LogFile\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

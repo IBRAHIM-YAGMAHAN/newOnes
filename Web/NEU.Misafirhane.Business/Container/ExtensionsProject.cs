@@ -17,9 +17,9 @@ namespace NEU.Misafirhane.Business.Concrete
             services.AddScoped<IGenelService, GenelManager>();
             services.AddScoped<IAuthService, AuthManager>();
 
-          
 
-         
+            services.AddScoped<IRezervasyonService, RezervasyonManager>();
+
 
             services.AddScoped<ITokenHelper, JwtHelper>();
 
