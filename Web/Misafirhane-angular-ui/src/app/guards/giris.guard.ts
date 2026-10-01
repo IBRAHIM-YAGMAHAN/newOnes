@@ -70,7 +70,7 @@ export class GirisGuard implements CanActivate {
       if (requiredRoles?.length) {
         const hasAnyRole = requiredRoles.some(role => this.yetkiService.yetkiVar(role));
         if (!hasAnyRole) {
-          this.router.navigate(['giris']);
+          this.router.navigate(['yonetim/giris']);
           return of(false);
         }
       }
@@ -86,14 +86,14 @@ export class GirisGuard implements CanActivate {
             return true;
           }),
           catchError(err => {
-            this.router.navigate(['giris']);
+            this.router.navigate(['yonetim/giris']);
             return of(false);
           })
         );
       }
     }
 
-    this.router.navigate(['giris']);
+    this.router.navigate(['yonetim/giris']);
     return false;
   }
 }

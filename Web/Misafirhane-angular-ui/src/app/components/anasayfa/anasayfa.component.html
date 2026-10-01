@@ -1,31 +1,38 @@
-<div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-5">
-    <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex align-items-stretch">
-        <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
-            <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
-                <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
-                    <span translate><i class="fas fa-tasks text-primary me-2"
-                            style="font-size: large;"></i><span></span>Anasayfa
-                    </span>
-                </h1>
-                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
-                    <li class="breadcrumb-item text-muted">
-                        <span class="text-muted text-hover-primary">NEÜ Sms Panel Sistemi Hoşgeldiniz.</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="d-flex align-items-center gap-2 gap-lg-3">
-                <!-- <a href="#"
-                    class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
-                    data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">Add Member</a>
-                <a href="#" class="btn btn-flex btn-primary h-40px fs-7 fw-bold" data-bs-toggle="modal"
-                    data-bs-target="#kt_modal_create_campaign">New Campaign</a> -->
-            </div>
-        </div>
-    </div>
-</div>
-<div id="kt_app_content" class="app-content  flex-column-fluid">
-    <div id="kt_app_content_container" class="app-container  container-fluid ">
+<div class="mh-anasayfa">
+  <header class="mh-banner">
+    <h1>Misafirhane</h1>
+    <p>Konforlu ve uygun fiyatlı konaklama</p>
+    <button class="mh-btn-rezervasyon" (click)="rezervasyonaGit()">Rezervasyon Yap</button>
+  </header>
 
+  <section class="mh-section">
+    <h2>Odalarımız</h2>
+    <div class="mh-oda-kartlari">
+      <div class="mh-oda-karti">
+        <h3>Standart Oda</h3>
+        <p>2 kişilik, gerekirse ek yatakla 3 kişiye kadar</p>
+      </div>
+      <div class="mh-oda-karti">
+        <h3>Suit Oda</h3>
+        <p>2 kişilik, daha geniş</p>
+      </div>
+      <div class="mh-oda-karti">
+        <h3>Aile Odası</h3>
+        <p>4 kişilik, gerekirse ek yatakla 5 kişiye kadar</p>
+      </div>
     </div>
-</div>
+  </section>
 
+  <section class="mh-section mh-kurallar">
+    <h2>Rezervasyon Kuralları</h2>
+    <ul>
+      <li>Rezervasyonlar en fazla 15 gün öncesinden yapılabilir.</li>
+      <li>Rezervasyon için T.C. Kimlik No, ad-soyad ve e-posta bilgisi gereklidir.</li>
+      <li>Oda ya da yatak bazlı kiralama seçebilirsiniz.</li>
+    </ul>
+  </section>
+
+  <footer class="mh-footer">
+    <p>© 2026 Misafirhane</p>
+  </footer>
+</div>

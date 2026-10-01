@@ -1,76 +1,76 @@
-/* Sticky durumunda sadece sticky logo görünsün, diğerleri gizlensin */
-.landing-header[data-kt-sticky="on"] .logo-default {
-    display: none !important;
+.mh-anasayfa {
+  font-family: Arial, sans-serif;
+  color: #222;
 }
 
-.landing-header[data-kt-sticky="on"] .logo-sticky {
-    display: inline-block !important;
+.mh-banner {
+  background: #1c2b48;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
 }
 
-/* Sticky değilken sticky logo gizli olsun */
-.landing-header:not([data-kt-sticky="on"]) .logo-sticky {
-    display: none !important;
+.mh-banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
 }
 
-.gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+.mh-banner p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
 }
 
-.gallery-item {
-    width: 280px;
-    /* Önceki değerden daha büyük */
-    max-width: 320px;
+.mh-btn-rezervasyon {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.gallery-item img {
-     width: 80%; 
-    /* height: 220px; */
-    object-fit: cover;
+.mh-btn-rezervasyon:hover {
+  background: #a93226;
 }
 
-.lightbox-backdrop,
-.lightbox {
-    z-index: 2000 !important;
-    position: fixed !important;
+.mh-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 20px;
 }
 
-.carousel-item {
-    padding: 2rem 0;
-    transition: transform 1.5s ease-in-out;
-    /* 1.5 saniye sürede kayar */
+.mh-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Carousel oklarını koyulaştır */
-/* Carousel oklarını çerçevesiz ve daha büyük yap */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #222 !important;
-    opacity: 1;
-    box-shadow: none;
-    width: 3rem;
-    height: 3rem;
-    background-size: 70% 70%;
-    background-position: center;
+.mh-oda-kartlari {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-.scroll-list {
-  max-height: 350px;
-  overflow-y: auto;
-  padding-right: 4px;
+.mh-oda-karti {
+  background: #f4f4f4;
+  border-radius: 6px;
+  padding: 24px;
+  width: 260px;
+  text-align: center;
 }
 
-/* Son duyuru için yanıp sönme animasyonu */
-@keyframes yanipSon {
-  0%, 100% { background-color: #fffbe6; }
-  50% { background-color: #c5f0fa; }
-
+.mh-kurallar ul {
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
 }
 
-.son-duyuru-yanip-son {
-  animation: yanipSon 1s infinite;
-  transition: background-color 0.1s;
-  border-radius: 8px; /* İstediğiniz değeri verebilirsiniz */
+.mh-footer {
+  background: #1c2b48;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
 }

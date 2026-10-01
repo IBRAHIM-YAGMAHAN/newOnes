@@ -1,0 +1,47 @@
+<div class="rz-container">
+  <h1>Rezervasyon</h1>
+
+  <div class="rz-arama-kutusu">
+    <div class="rz-alan">
+      <label>Giriş Tarihi</label>
+      <input type="date" [(ngModel)]="girisTarihi" [min]="bugun" [max]="maksTarih" (change)="kriterDegisti()">
+    </div>
+    <div class="rz-alan">
+      <label>Çıkış Tarihi</label>
+      <input type="date" [(ngModel)]="cikisTarihi" [min]="girisTarihi" (change)="kriterDegisti()">
+    </div>
+    <div class="rz-alan">
+      <label>Kişi Sayısı</label>
+      <input type="number" [(ngModel)]="kisiSayisi" min="1" max="10" (change)="kriterDegisti()">
+    </div>
+    <button class="rz-ara-btn" (click)="ara()">Ara</button>
+  </div>
+
+  <p *ngIf="hataMesaji" class="rz-hata">{{ hataMesaji }}</p>
+
+  <div *ngIf="yukleniyor" class="rz-yukleniyor">Odalar aranıyor...</div>
+
+  <div *ngIf="aramaYapildi && !yukleniyor && musaitOdalar.length === 0 && !hataMesaji" class="rz-bos">
+    Seçtiğiniz tarihlerde uygun oda bulunamadı.
+  </div>
+
+  <ng-container *ngIf="!yukleniyor">
+  <div *ngFor="let oda of musaitOdalar" class="rz-oda-karti">
+    <div class="rz-oda-baslik">
+      <h3>Oda {{ oda.odaNo }} — {{ oda.odaTipi }}</h3>
+      <span class="rz-kapasite">Kapasite: {{ oda.normalKapasite }} kişi{{ oda.maksEkYatak > 0 ? ' (+' + oda.maksEkYatak + ' ek yatak)' : '' }}</span>
+    </div>
+
+    <div class="rz-secenekler">
+      <button *ngIf="oda.tumOdaMusait" class="rz-sec-btn rz-oda-btn">
+        Tüm Odayı Kirala
+        <span *ngIf="oda.ekYatakGerekli > 0"> ({{ oda.ekYatakGerekli }} ek yatakla)</span>
+      </button>
+
+      <button *ngFor="let yatak of oda.musaitYataklar" class="rz-sec-btn rz-yatak-btn">
+        Yatak {{ yatak.yatakNo }}
+      </button>
+    </div>
+  </div>
+</ng-container>
+</div>

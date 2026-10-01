@@ -1,28 +1,35 @@
 import { Routes } from '@angular/router';
 import { GirisGuard } from './guards/giris.guard';
+
 export const routes: Routes = [
     {
-        path: 'giris',
+        path: '',
+        loadComponent: () => import('./components/anasayfa/anasayfa.component').then(m => m.AnasayfaComponent)
+    },
+    {
+        path: 'rezervasyon',
+        loadComponent: () => import('./components/rezervasyon/rezervasyon.component').then(m => m.RezervasyonComponent)
+    },
+    {
+        path: 'yonetim/giris',
         loadComponent: () => import('./components/giris/giris.component').then(m => m.GirisComponent)
     },
     {
-        path: '',
-        loadComponent: () => import('./components/layouts/layouts.component').then(m => m.LayoutsComponent), // Use the layout component
+        path: 'yonetim',
+        loadComponent: () => import('./components/layouts/layouts.component').then(m => m.LayoutsComponent),
         canActivate: [GirisGuard],
         children: [
             {
                 path: '',
-                redirectTo: 'anasayfa',
+                redirectTo: 'oda-gecmisi',
                 pathMatch: 'full'
             },
             {
-                path: 'anasayfa',
-                loadComponent: () => import('./components/anasayfa/anasayfa.component').then(m => m.AnasayfaComponent),
-                canActivate: [GirisGuard],
-                data: { breadcrumb: 'Anasayfa' }
-            },
-           
+                path: 'oda-gecmisi',
+                loadComponent: () => import('./components/oda-gecmisi/oda-gecmisi.component').then(m => m.OdaGecmisiComponent),
+                data: { breadcrumb: 'Oda Geçmişi' }
+            }
         ]
     },
-    { path: '**', redirectTo: 'giris' } // Olmayan yollar için yönlendirme
+    { path: '**', redirectTo: '' }
 ];

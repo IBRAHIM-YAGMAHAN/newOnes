@@ -48,6 +48,7 @@ namespace NEU.Misafirhane.WepApi.Controllers
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
+        [Authorize]
         [HttpGet("oda/{odaId}/gecmis")]
         public async Task<IActionResult> OdaGecmisi(long odaId)
         {

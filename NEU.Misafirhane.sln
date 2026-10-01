@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.10.12210.168 stable
+VisualStudioVersion = 18.10.12210.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{FA909550-2B56-4D8C-BB40-AE7CD617A71B}"
 EndProject
@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEU.Misafirhane.Dto", "Web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEU.Misafirhane.Entities", "Web\NEU.Misafirhane.Entities\NEU.Misafirhane.Entities.csproj", "{B06564A6-092A-2A8E-47C0-2F3FC7968B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEU.Misafirhane.WepApi", "Web\NEU.Misafirhane.WepApi\NEU.Misafirhane.WepApi.csproj", "{F0A7CD21-2B61-8F25-2DC7-6713582C6676}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEU.Misafirhane.WebApi", "Web\NEU.Misafirhane.WepApi\NEU.Misafirhane.WebApi.csproj", "{F0A7CD21-2B61-8F25-2DC7-6713582C6676}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
