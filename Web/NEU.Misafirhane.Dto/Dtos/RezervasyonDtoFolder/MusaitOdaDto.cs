@@ -6,7 +6,7 @@ namespace NEU.Misafirhane.Dto.Dtos.RezervasyonDtoFolder
 {
     public class MusaitOdaDto
     {
-        public long OdaId { get; set; }
+        public int OdaId { get; set; }
         public string OdaNo { get; set; } = string.Empty;
         public string OdaTipi { get; set; } = string.Empty;
         public int NormalKapasite { get; set; }

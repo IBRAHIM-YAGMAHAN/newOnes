@@ -11,8 +11,8 @@ namespace NEU.Misafirhane.Dto.Dtos.RezervasyonDtoFolder
 
     public class RezervasyonOlusturDto
     {
-        public long OdaId { get; set; }
-        public long? YatakId { get; set; }
+        public int OdaId { get; set; }
+        public int? YatakId { get; set; }
         public KiralamaTipi KiralamaTipi { get; set; }
         public DateOnly GirisTarihi { get; set; }
         public DateOnly CikisTarihi { get; set; }

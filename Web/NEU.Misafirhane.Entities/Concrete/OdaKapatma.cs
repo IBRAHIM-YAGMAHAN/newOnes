@@ -7,8 +7,8 @@ namespace NEU.Misafirhane.Entities.Concrete
 {
     public class OdaKapatma : IEntity
     {
-        public long Id { get; set; }
-        public long OdaId { get; set; }
+        public int Id { get; set; }
+        public int OdaId { get; set; }
         public DateOnly BaslangicTarihi { get; set; }
         public DateOnly BitisTarihi { get; set; }
         public string? Sebep { get; set; }

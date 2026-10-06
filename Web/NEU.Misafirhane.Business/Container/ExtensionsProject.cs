@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using NEU.Core.Recaptcha;
 using NEU.Core.Utilities.Security.Jwt;
 using NEU.Misafirhane.Business.Abstract;
+using NEU.Misafirhane.DataAccess.Abstract;
+using NEU.Misafirhane.DataAccess.EntityFramework;
 using System.Text;
 
 namespace NEU.Misafirhane.Business.Concrete
@@ -24,7 +26,30 @@ namespace NEU.Misafirhane.Business.Concrete
             services.AddScoped<ITokenHelper, JwtHelper>();
 
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<IOdaTipiDal, EfOdaTipiDal>();
+            services.AddScoped<IOdaDal, EfOdaDal>();
+            services.AddScoped<IYatakDal, EfYatakDal>();
+            services.AddScoped<IOdaKapatmaDal, EfOdaKapatmaDal>();
+            services.AddScoped<IMisafirDal, EfMisafirDal>();
+            services.AddScoped<IRezervasyonDal, EfRezervasyonDal>();
+
+            services.AddScoped<IOzellikDal, EfOzellikDal>();
+            services.AddScoped<IOdaOzellikDal, EfOdaOzellikDal>();
+            services.AddScoped<IMusteriTipiDal, EfMusteriTipiDal>();
+            services.AddScoped<IOdaFiyatDal, EfOdaFiyatDal>();
+            services.AddScoped<IFaturaDal, EfFaturaDal>();
+
+            services.AddScoped<IOdaTipiService, OdaTipiManager>();
+            services.AddScoped<IOdaService, OdaManager>();
+            services.AddScoped<IYatakService, YatakManager>();
+            services.AddScoped<IOdaKapatmaService, OdaKapatmaManager>();
+            services.AddScoped<IOzellikService, OzellikManager>();
+            services.AddScoped<IMusteriTipiService, MusteriTipiManager>();
+            services.AddScoped<IOdaFiyatService, OdaFiyatManager>();
+
             services.AddHttpClient<RecaptchaService>();
+
         }
 
 

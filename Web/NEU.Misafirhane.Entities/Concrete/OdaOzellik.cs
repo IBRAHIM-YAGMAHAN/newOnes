@@ -1,15 +1,14 @@
 ﻿using NEU.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NEU.Misafirhane.Entities.Concrete
 {
-    public class Yatak : IEntity
+    public class OdaOzellik : IEntity
     {
         public int Id { get; set; }
         public int OdaId { get; set; }
-        public int YatakNo { get; set; }
+        public int OzellikId { get; set; }
+
         public Oda Oda { get; set; } = null!;
+        public Ozellik Ozellik { get; set; } = null!;
     }
 }

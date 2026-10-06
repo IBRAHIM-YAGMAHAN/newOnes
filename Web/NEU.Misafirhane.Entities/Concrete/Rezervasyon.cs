@@ -8,10 +8,10 @@ namespace NEU.Misafirhane.Entities.Concrete
 {
     public class Rezervasyon : IEntity
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string RezervasyonKodu { get; set; } = string.Empty;
-        public long OdaId { get; set; }
-        public long? YatakId { get; set; }
+        public int OdaId { get; set; }
+        public int? YatakId { get; set; }
         public KiralamaTipi KiralamaTipi { get; set; }
         public DateOnly GirisTarihi { get; set; }
         public DateOnly CikisTarihi { get; set; }
@@ -24,5 +24,15 @@ namespace NEU.Misafirhane.Entities.Concrete
         public List<Misafir> Misafirler { get; set; } = new();
 
         public int EkYatakSayisi { get; set; }
+
+        public int? MusteriTipiId { get; set; }
+        public decimal GecelikFiyat { get; set; }
+        public decimal EkYatakGecelikFiyat { get; set; }
+        public int GeceSayisi { get; set; }
+        public decimal ManuelIndirim { get; set; }
+        public decimal ToplamTutar { get; set; }
+
+        public MusteriTipi? MusteriTipi { get; set; }
+        public Fatura? Fatura { get; set; }
     }
 }

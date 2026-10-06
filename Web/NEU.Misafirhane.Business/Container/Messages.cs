@@ -41,5 +41,12 @@ namespace NEU.Misafirhane.Business.Container
         public const string RezervasyonGetirildi = "Rezervasyon getirildi.";
         public const string OdaGecmisiGetirildi = "Oda geçmişi getirildi.";
         public const string OdaBulunamadi = "Oda bulunamadı.";
+
+
+        public const string KayitEklendi = "Kayıt eklendi.";
+        public const string KayitGuncellendi = "Kayıt güncellendi.";
+        public const string KayitSilindi = "Kayıt silindi.";
+        public const string KayitBulunamadi = "Kayıt bulunamadı.";
+        public const string IslemHatasi = "İşlem sırasında bir hata oluştu: {0}";
     }
 }

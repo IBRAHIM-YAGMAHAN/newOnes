@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using NEU.Core.Utilities.Results;
 using NEU.Misafirhane.Business.Abstract;
 using NEU.Misafirhane.Business.Container;
+using NEU.Misafirhane.DataAccess.Abstract;
 using NEU.Misafirhane.Dto.Dtos.RezervasyonDtoFolder;
 using NEU.Misafirhane.Entities.Concrete;
 using NEU.Misafirhane.Entities.Enums;
@@ -12,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using AutoMapper;
+
 namespace NEU.Misafirhane.Business.Concrete
 {
     public class RezervasyonManager : IRezervasyonService
@@ -19,9 +22,15 @@ namespace NEU.Misafirhane.Business.Concrete
         private readonly Context _context;
         private readonly int _maksIleriGun;
 
-        public RezervasyonManager(Context context, IConfiguration configuration)
+        private readonly IRezervasyonDal _rezervasyonDal;
+
+        private readonly IMapper _mapper;
+
+        public RezervasyonManager(Context context, IConfiguration configuration, IRezervasyonDal rezervasyonDal, IMapper mapper)
         {
             _context = context;
+            _rezervasyonDal = rezervasyonDal;
+            _mapper = mapper;
             _maksIleriGun = int.TryParse(configuration[AyarAnahtarlari.MaksIleriGun], out var gun)
                 ? gun
                 : AyarAnahtarlari.VarsayilanMaksIleriGun;
@@ -76,25 +85,17 @@ namespace NEU.Misafirhane.Business.Concrete
 
                 var musaitYataklar = tumOdaRezervasyonuVar
                     ? new List<MusaitYatakDto>()
-                    : oda.Yataklar
-                        .Where(y => !doluYatakIdleri.Contains(y.Id))
-                        .OrderBy(y => y.YatakNo)
-                        .Select(y => new MusaitYatakDto { YatakId = y.Id, YatakNo = y.YatakNo })
-                        .ToList();
+                    : _mapper.Map<List<MusaitYatakDto>>(
+                        oda.Yataklar.Where(y => !doluYatakIdleri.Contains(y.Id)).OrderBy(y => y.YatakNo).ToList());
 
                 if (!tumOdaMusait && musaitYataklar.Count == 0) continue;
 
-                sonuc.Add(new MusaitOdaDto
-                {
-                    OdaId = oda.Id,
-                    OdaNo = oda.OdaNo,
-                    OdaTipi = oda.OdaTipi.Ad,
-                    NormalKapasite = oda.NormalKapasite,
-                    MaksEkYatak = oda.MaksEkYatak,
-                    TumOdaMusait = tumOdaMusait,
-                    EkYatakGerekli = Math.Max(0, arama.KisiSayisi - oda.NormalKapasite),
-                    MusaitYataklar = musaitYataklar
-                });
+                var dto = _mapper.Map<MusaitOdaDto>(oda);
+                dto.TumOdaMusait = tumOdaMusait;
+                dto.EkYatakGerekli = Math.Max(0, arama.KisiSayisi - oda.NormalKapasite);
+                dto.MusaitYataklar = musaitYataklar;
+
+                sonuc.Add(dto);
             }
 
             return new SuccessDataResult<List<MusaitOdaDto>>(sonuc, Messages.MusaitOdalarGetirildi, sonuc.Count);
@@ -177,35 +178,17 @@ namespace NEU.Misafirhane.Business.Concrete
                     return new ErrorDataResult<RezervasyonSonucDto>(Messages.SeciliYerMusaitDegil);
                 }
 
-                var rezervasyon = new Rezervasyon
-                {
-                    RezervasyonKodu = RezervasyonKoduUret(),
-                    OdaId = dto.OdaId,
-                    YatakId = dto.YatakId,
-                    KiralamaTipi = dto.KiralamaTipi,
-                    GirisTarihi = dto.GirisTarihi,
-                    CikisTarihi = dto.CikisTarihi,
-                    EkYatakSayisi = dto.EkYatakSayisi,
-                    Email = dto.Email,
-                    Misafirler = dto.Misafirler.Select(m => new Misafir
-                    {
-                        Ad = m.Ad,
-                        Soyad = m.Soyad,
-                        TcKimlikNo = m.TcKimlikNo
-                    }).ToList()
-                };
+                var rezervasyon = _mapper.Map<Rezervasyon>(dto);
+                rezervasyon.RezervasyonKodu = RezervasyonKoduUret();
 
                 _context.Rezervasyonlar.Add(rezervasyon);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
 
-                return new SuccessDataResult<RezervasyonSonucDto>(new RezervasyonSonucDto
-                {
-                    RezervasyonKodu = rezervasyon.RezervasyonKodu,
-                    OdaNo = oda.OdaNo,
-                    GirisTarihi = rezervasyon.GirisTarihi,
-                    CikisTarihi = rezervasyon.CikisTarihi
-                }, Messages.RezervasyonOlusturuldu);
+                var sonucDto = _mapper.Map<RezervasyonSonucDto>(rezervasyon);
+                sonucDto.OdaNo = oda.OdaNo;
+
+                return new SuccessDataResult<RezervasyonSonucDto>(sonucDto, Messages.RezervasyonOlusturuldu);
             }
             catch
             {
@@ -231,25 +214,8 @@ namespace NEU.Misafirhane.Business.Concrete
             if (rezervasyon == null)
                 return new ErrorDataResult<RezervasyonDetayDto>(Messages.RezervasyonBulunamadi);
 
-            return new SuccessDataResult<RezervasyonDetayDto>(new RezervasyonDetayDto
-            {
-                RezervasyonKodu = rezervasyon.RezervasyonKodu,
-                OdaNo = rezervasyon.Oda.OdaNo,
-                OdaTipi = rezervasyon.Oda.OdaTipi.Ad,
-                KiralamaTipi = rezervasyon.KiralamaTipi,
-                YatakNo = rezervasyon.Yatak?.YatakNo,
-                GirisTarihi = rezervasyon.GirisTarihi,
-                CikisTarihi = rezervasyon.CikisTarihi,
-                Durum = rezervasyon.Durum,
-                EkYatakSayisi = rezervasyon.EkYatakSayisi,
-                Email = rezervasyon.Email,
-                Misafirler = rezervasyon.Misafirler.Select(m => new MisafirDto
-                {
-                    Ad = m.Ad,
-                    Soyad = m.Soyad,
-                    TcKimlikNo = m.TcKimlikNo
-                }).ToList()
-            }, Messages.RezervasyonGetirildi);
+            var detay = _mapper.Map<RezervasyonDetayDto>(rezervasyon);
+            return new SuccessDataResult<RezervasyonDetayDto>(detay, Messages.RezervasyonGetirildi);
         }
 
         public async Task<IResult> RezervasyonIptalEtAsync(string rezervasyonKodu)
@@ -270,31 +236,76 @@ namespace NEU.Misafirhane.Business.Concrete
             return new SuccessResult(Messages.RezervasyonIptalEdildi);
         }
 
-        public async Task<IDataResult<List<OdaGecmisiKaydiDto>>> OdaGecmisiGetirAsync(long odaId)
+        public async Task<IDataResult<List<OdaGecmisiKaydiDto>>> OdaGecmisiGetirAsync(int odaId)
         {
             var odaVarMi = await _context.Odalar.AnyAsync(o => o.Id == odaId);
             if (!odaVarMi)
                 return new ErrorDataResult<List<OdaGecmisiKaydiDto>>(Messages.OdaBulunamadi);
 
-            var gecmis = await _context.Rezervasyonlar
+            var kayitlar = await _context.Rezervasyonlar
                 .AsNoTracking()
                 .Where(r => r.OdaId == odaId)
                 .Include(r => r.Yatak)
                 .Include(r => r.Misafirler)
                 .OrderByDescending(r => r.GirisTarihi)
-                .Select(r => new OdaGecmisiKaydiDto
-                {
-                    RezervasyonKodu = r.RezervasyonKodu,
-                    GirisTarihi = r.GirisTarihi,
-                    CikisTarihi = r.CikisTarihi,
-                    Durum = r.Durum,
-                    KiralamaTipi = r.KiralamaTipi,
-                    YatakNo = r.Yatak != null ? r.Yatak.YatakNo : (int?)null,
-                    MisafirAdSoyad = r.Misafirler.Select(m => m.Ad + " " + m.Soyad).ToList()
-                })
                 .ToListAsync();
 
+            var gecmis = _mapper.Map<List<OdaGecmisiKaydiDto>>(kayitlar);
+
             return new SuccessDataResult<List<OdaGecmisiKaydiDto>>(gecmis, Messages.OdaGecmisiGetirildi, gecmis.Count);
+        }
+
+        public IResult TAdd(Rezervasyon t)
+        {
+            try
+            {
+                _rezervasyonDal.Add(t);
+                return new SuccessResult(Messages.KayitEklendi);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(string.Format(Messages.IslemHatasi, ex.Message));
+            }
+        }
+
+        public IResult TUpdate(Rezervasyon t)
+        {
+            try
+            {
+                _rezervasyonDal.Update(t);
+                return new SuccessResult(Messages.KayitGuncellendi);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(string.Format(Messages.IslemHatasi, ex.Message));
+            }
+        }
+
+        public IResult TDelete(Rezervasyon t)
+        {
+            try
+            {
+                _rezervasyonDal.Delete(t);
+                return new SuccessResult(Messages.KayitSilindi);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(string.Format(Messages.IslemHatasi, ex.Message));
+            }
+        }
+
+        public IDataResult<List<Rezervasyon>> TGetList()
+        {
+            var liste = _rezervasyonDal.GetList();
+            return new SuccessDataResult<List<Rezervasyon>>((List<Rezervasyon>)liste);
+        }
+
+        public IDataResult<Rezervasyon> TGetByID(int id)
+        {
+            var kayit = _rezervasyonDal.GetByID(id);
+            return kayit != null
+                ? new SuccessDataResult<Rezervasyon>(kayit)
+                : new ErrorDataResult<Rezervasyon>(Messages.KayitBulunamadi);
         }
     }
 }

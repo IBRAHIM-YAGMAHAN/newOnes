@@ -7,7 +7,7 @@ namespace NEU.Misafirhane.Entities.Concrete
 {
     public class Oda : IEntity
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string OdaNo { get; set; } = string.Empty;
         public string? Aciklama { get; set; }
         public bool AktifMi { get; set; } = true;
@@ -15,10 +15,12 @@ namespace NEU.Misafirhane.Entities.Concrete
 
         //gecmiş için lazım olacak
         public List<Rezervasyon> Rezervasyonlar { get; set; } = new();
-        public long OdaTipiId { get; set; }
+        public int OdaTipiId { get; set; }
         public int NormalKapasite { get; set; }
         public int MaksEkYatak { get; set; }
         public OdaTipi OdaTipi { get; set; } = null!;
         public List<OdaKapatma> Kapatmalar { get; set; } = new();
+
+        public List<OdaOzellik> Ozellikler { get; set; } = new();
     }
 }

@@ -50,7 +50,7 @@ namespace NEU.Misafirhane.WepApi.Controllers
 
         [Authorize]
         [HttpGet("oda/{odaId}/gecmis")]
-        public async Task<IActionResult> OdaGecmisi(long odaId)
+        public async Task<IActionResult> OdaGecmisi(int odaId)
         {
             var result = await _rezervasyonService.OdaGecmisiGetirAsync(odaId);
             return result.Success ? Ok(result) : BadRequest(result);
