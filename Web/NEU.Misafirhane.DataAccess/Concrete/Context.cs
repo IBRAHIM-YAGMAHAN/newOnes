@@ -34,6 +34,8 @@ namespace DataAccess.Concrete
         public DbSet<Fatura> Faturalar { get; set; }
 
 
+        public DbSet<Odeme> Odemeler { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -92,6 +94,12 @@ namespace DataAccess.Concrete
             modelBuilder.Entity<Fatura>().Property(f => f.KdvOrani).HasPrecision(5, 2);
             modelBuilder.Entity<Fatura>().Property(f => f.KdvTutari).HasPrecision(10, 2);
             modelBuilder.Entity<Fatura>().Property(f => f.GenelToplam).HasPrecision(10, 2);
+
+            modelBuilder.Entity<Odeme>()
+                .HasOne(o => o.Fatura).WithMany(f => f.Odemeler)
+                .HasForeignKey(o => o.FaturaId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Odeme>().Property(o => o.Tutar).HasPrecision(10, 2);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace NEU.Misafirhane.Dto.Dtos.RezervasyonDtoFolder
         public DateOnly GirisTarihi { get; set; }
         public DateOnly CikisTarihi { get; set; }
         public int EkYatakSayisi { get; set; }
+        public int MusteriTipiId { get; set; }
         public string Email { get; set; } = string.Empty;
         public List<MisafirDto> Misafirler { get; set; } = new();
     }
@@ -27,5 +28,8 @@ namespace NEU.Misafirhane.Dto.Dtos.RezervasyonDtoFolder
         public string OdaNo { get; set; } = string.Empty;
         public DateOnly GirisTarihi { get; set; }
         public DateOnly CikisTarihi { get; set; }
+
+        public decimal ToplamTutar { get; set; }
+        public int GeceSayisi { get; set; }
     }
 }

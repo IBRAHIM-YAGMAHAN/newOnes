@@ -13,5 +13,11 @@ namespace NEU.Misafirhane.Business.Abstract
         Task<IDataResult<RezervasyonDetayDto>> RezervasyonGetirAsync(string rezervasyonKodu);
         Task<IResult> RezervasyonIptalEtAsync(string rezervasyonKodu);
         Task<IDataResult<List<OdaGecmisiKaydiDto>>> OdaGecmisiGetirAsync(int odaId);
+
+        Task<IDataResult<FaturaDto>> FaturaOlusturAsync(FaturaOlusturDto dto);
+        Task<IDataResult<FaturaDto>> FaturaGetirAsync(string rezervasyonKodu);
+
+        Task<IDataResult<OdemeDto>> OdemeEkleAsync(OdemeEkleDto dto);
+        Task<IDataResult<List<OdemeDto>>> OdemeleriGetirAsync(string rezervasyonKodu);
     }
 }

@@ -64,7 +64,33 @@ builder.Services.AddDbContext<Context>();
 ValidatorOptions.Global.LanguageManager.Culture = new System.Globalization.CultureInfo("tr");
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();  //yorum satırı yaparız sonra
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "JWT token'ı 'Bearer {token}' formatında giriniz."
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});  //yorum satırı yaparız sonra
 ExtensionsProject.ContainerDependencies(builder.Services); // Extensions sýnýfýný kullanýn
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 builder.Services.AddControllersWithViews();

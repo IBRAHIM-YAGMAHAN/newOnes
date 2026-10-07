@@ -10,12 +10,14 @@ namespace NEU.Misafirhane.WepApi.Mapping
         public AutoMapperConfig()
         {
             CreateMap<Oda, MusaitOdaDto>()
-                .ForMember(d => d.OdaTipi, o => o.MapFrom(s => s.OdaTipi.Ad))
-                .ForMember(d => d.TumOdaMusait, o => o.Ignore())
-                .ForMember(d => d.EkYatakGerekli, o => o.Ignore())
-                .ForMember(d => d.MusaitYataklar, o => o.Ignore());
+              .ForMember(d => d.OdaId, o => o.MapFrom(s => s.Id))
+              .ForMember(d => d.OdaTipi, o => o.MapFrom(s => s.OdaTipi.Ad))
+              .ForMember(d => d.TumOdaMusait, o => o.Ignore())
+              .ForMember(d => d.EkYatakGerekli, o => o.Ignore())
+              .ForMember(d => d.MusaitYataklar, o => o.Ignore());
 
-            CreateMap<Yatak, MusaitYatakDto>();
+            CreateMap<Yatak, MusaitYatakDto>()
+                .ForMember(d => d.YatakId, o => o.MapFrom(s => s.Id));
 
             CreateMap<MisafirDto, Misafir>();
             CreateMap<Misafir, MisafirDto>();
@@ -38,6 +40,14 @@ namespace NEU.Misafirhane.WepApi.Mapping
             CreateMap<Rezervasyon, OdaGecmisiKaydiDto>()
                 .ForMember(d => d.YatakNo, o => o.MapFrom(s => s.Yatak != null ? (int?)s.Yatak.YatakNo : null))
                 .ForMember(d => d.MisafirAdSoyad, o => o.MapFrom(s => s.Misafirler.Select(m => m.Ad + " " + m.Soyad)));
+
+            CreateMap<MusteriTipi, MusteriTipiDto>();
+
+            CreateMap<Odeme, OdemeDto>();
+            CreateMap<Fatura, FaturaDto>()
+                .ForMember(d => d.OdenenTutar, o => o.MapFrom(s => s.Odemeler.Sum(x => x.Tutar)))
+                .ForMember(d => d.KalanTutar, o => o.MapFrom(s => s.GenelToplam - s.Odemeler.Sum(x => x.Tutar)));
         }
+
     }
 }

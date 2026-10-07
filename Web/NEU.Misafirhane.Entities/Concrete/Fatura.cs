@@ -1,4 +1,5 @@
 ﻿using NEU.Core.Entities;
+using System.Collections.Generic;
 
 namespace NEU.Misafirhane.Entities.Concrete
 {
@@ -17,5 +18,7 @@ namespace NEU.Misafirhane.Entities.Concrete
         public decimal GenelToplam { get; set; }
 
         public Rezervasyon Rezervasyon { get; set; } = null!;
+
+        public List<Odeme> Odemeler { get; set; } = new();
     }
 }

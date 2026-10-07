@@ -4,6 +4,7 @@ using NEU.Misafirhane.Business.Abstract;
 using NEU.Misafirhane.Business.Container;
 using NEU.Misafirhane.DataAccess.Abstract;
 using NEU.Misafirhane.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -13,15 +14,24 @@ namespace NEU.Misafirhane.Business.Concrete
     {
         private readonly IYatakDal _yatakDal;
 
-        public YatakManager(IYatakDal yatakDal)
+        private readonly Context _context;
+
+        public YatakManager(IYatakDal yatakDal, Context context)
         {
             _yatakDal = yatakDal;
+            _context = context;
         }
 
         public IResult TAdd(Yatak t)
         {
             try
             {
+                var oda = _context.Odalar.Include(o => o.Yataklar).FirstOrDefault(o => o.Id == t.OdaId);
+                if (oda == null)
+                    return new ErrorResult(Messages.OdaBulunamadi);
+                if (oda.Yataklar.Count >= oda.NormalKapasite)
+                    return new ErrorResult(Messages.YatakKapasiteAsildi);
+
                 _yatakDal.Add(t);
                 return new SuccessResult(Messages.KayitEklendi);
             }
@@ -30,7 +40,6 @@ namespace NEU.Misafirhane.Business.Concrete
                 return new ErrorResult(string.Format(Messages.IslemHatasi, ex.Message));
             }
         }
-
         public IResult TUpdate(Yatak t)
         {
             try

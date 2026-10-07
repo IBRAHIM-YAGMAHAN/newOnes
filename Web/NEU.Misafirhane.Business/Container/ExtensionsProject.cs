@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using NEU.Core.Recaptcha;
 using NEU.Core.Utilities.Security.Jwt;
 using NEU.Misafirhane.Business.Abstract;
+using NEU.Misafirhane.Business.ValidationRules.FluentValidation;
 using NEU.Misafirhane.DataAccess.Abstract;
 using NEU.Misafirhane.DataAccess.EntityFramework;
 using System.Text;
@@ -48,6 +49,8 @@ namespace NEU.Misafirhane.Business.Concrete
             services.AddScoped<IMusteriTipiService, MusteriTipiManager>();
             services.AddScoped<IOdaFiyatService, OdaFiyatManager>();
 
+            services.AddScoped<IOdemeDal, EfOdemeDal>();
+
             services.AddHttpClient<RecaptchaService>();
 
         }
@@ -80,7 +83,7 @@ namespace NEU.Misafirhane.Business.Concrete
 
         public static void CustomValidator(IServiceCollection services)
         {
-            
+            services.AddValidatorsFromAssemblyContaining<RezervasyonOlusturDtoValidator>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿// Business\Concrete\OdaFiyatManager.cs
+using DataAccess.Concrete;
 using NEU.Core.Utilities.Results;
 using NEU.Misafirhane.Business.Abstract;
 using NEU.Misafirhane.Business.Container;
@@ -6,6 +7,7 @@ using NEU.Misafirhane.DataAccess.Abstract;
 using NEU.Misafirhane.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NEU.Misafirhane.Business.Concrete
 {
@@ -13,15 +15,27 @@ namespace NEU.Misafirhane.Business.Concrete
     {
         private readonly IOdaFiyatDal _odaFiyatDal;
 
-        public OdaFiyatManager(IOdaFiyatDal odaFiyatDal)
+        private readonly Context _context;
+
+        public OdaFiyatManager(IOdaFiyatDal odaFiyatDal, Context context)
         {
             _odaFiyatDal = odaFiyatDal;
+            _context = context;
         }
 
         public IResult TAdd(OdaFiyat t)
         {
             try
             {
+                var cakisanVarMi = _context.OdaFiyatlari.Any(f =>
+                    f.OdaTipiId == t.OdaTipiId &&
+                    f.MusteriTipiId == t.MusteriTipiId &&
+                    f.GecerlilikBaslangic <= (t.GecerlilikBitis ?? DateOnly.MaxValue) &&
+                    (f.GecerlilikBitis == null || f.GecerlilikBitis >= t.GecerlilikBaslangic));
+
+                if (cakisanVarMi)
+                    return new ErrorResult(Messages.FiyatTarihCakisiyor);
+
                 _odaFiyatDal.Add(t);
                 return new SuccessResult(Messages.KayitEklendi);
             }

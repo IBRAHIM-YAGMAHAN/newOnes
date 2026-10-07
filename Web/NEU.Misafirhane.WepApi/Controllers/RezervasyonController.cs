@@ -55,5 +55,39 @@ namespace NEU.Misafirhane.WepApi.Controllers
             var result = await _rezervasyonService.OdaGecmisiGetirAsync(odaId);
             return result.Success ? Ok(result) : BadRequest(result);
         }
+
+
+        [Authorize]
+        [HttpPost("fatura")]
+        public async Task<IActionResult> FaturaOlustur([FromBody] FaturaOlusturDto dto)
+        {
+            var result = await _rezervasyonService.FaturaOlusturAsync(dto);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [Authorize]
+        [HttpGet("{rezervasyonKodu}/fatura")]
+        public async Task<IActionResult> FaturaGetir(string rezervasyonKodu)
+        {
+            var result = await _rezervasyonService.FaturaGetirAsync(rezervasyonKodu);
+            return result.Success ? Ok(result) : NotFound(result);
+        }
+
+
+        [Authorize]
+        [HttpPost("odeme")]
+        public async Task<IActionResult> OdemeEkle([FromBody] OdemeEkleDto dto)
+        {
+            var result = await _rezervasyonService.OdemeEkleAsync(dto);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        [Authorize]
+        [HttpGet("{rezervasyonKodu}/odemeler")]
+        public async Task<IActionResult> OdemeleriGetir(string rezervasyonKodu)
+        {
+            var result = await _rezervasyonService.OdemeleriGetirAsync(rezervasyonKodu);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
     }
 }

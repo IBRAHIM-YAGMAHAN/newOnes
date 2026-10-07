@@ -48,5 +48,18 @@ namespace NEU.Misafirhane.Business.Container
         public const string KayitSilindi = "Kayıt silindi.";
         public const string KayitBulunamadi = "Kayıt bulunamadı.";
         public const string IslemHatasi = "İşlem sırasında bir hata oluştu: {0}";
+
+        public const string MusteriTipiGecersiz = "Geçersiz müşteri tipi seçildi.";
+        public const string FiyatTanimliDegil = "Seçilen oda tipi ve müşteri tipi için geçerli bir fiyat tanımlı değil.";
+        public const string FaturaOlusturuldu = "Fatura oluşturuldu.";
+        public const string FaturaZatenVar = "Bu rezervasyon için zaten fatura oluşturulmuş.";
+        public const string FaturaBulunamadi = "Bu rezervasyona ait fatura bulunamadı.";
+
+        public const string FiyatTarihCakisiyor = "Bu oda tipi ve müşteri tipi için tarihleri çakışan bir fiyat kaydı var.";
+        public const string YatakKapasiteAsildi = "Bu odaya tanımlı kapasiteden fazla yatak eklenemez.";
+        public const string OdemeTutariGecersiz = "Ödeme tutarı sıfırdan büyük olmalıdır.";
+        public const string OdemeToplamiAsildi = "Ödenen toplam tutar, fatura genel toplamını aşıyor.";
+        public const string OdemeEklendi = "Ödeme eklendi.";
+        public const string OdemeleriGetirildi = "Ödemeler getirildi.";
     }
 }
